@@ -99,13 +99,30 @@ This project analyzes **Spotify user behavior, subscription details, and demogra
 
 ---
 
-## 📊 Visualization  
+## 🔗 Power BI Dashboard & Visualisasi
 
-Interactive dashboards & visual analysis can include:  
-- Churn rate by contract type & payment method  
-- Churn vs. tenure distribution  
-- Engagement levels (songs, hours streamed) vs. churn  
-- Age demographics and churn rate  
+Nikmati ringkasan visual churn Spotify dalam format **PDF**:
+
+<p>
+  <a href="https://github.com/xxvlrapss/spotify-customer-churn/blob/main/PowerBI/visualisasi-spotify-churn.pdf" target="_blank">
+    <img src="https://img.shields.io/badge/VIEW-visualisasi--spotify--churn.pdf-00bfa6?style=for-the-badge&logo=readthedocs&logoColor=white" alt="View PDF" />
+  </a>
+</p>
+
+- **visualisasi-spotify-churn.pdf** — Versi statis dari dashboard (mudah dipreview langsung di GitHub tanpa Power BI).
+
+<!--
+Jika nanti kamu menambahkan file PBIX, tinggal buka komentar dan ganti nama filenya:
+
+<p>
+  <a href="https://github.com/xxvlrapss/spotify-customer-churn/raw/main/PowerBI/spotify-churn-dashboard.pbix">
+    <img src="https://img.shields.io/badge/DOWNLOAD-spotify--churn--dashboard.pbix-2e7d32?style=for-the-badge&logo=powerbi&logoColor=white" alt="Download PBIX" />
+  </a>
+</p>
+
+- **spotify-churn-dashboard.pbix** — File Power BI interaktif (buka di Power BI Desktop).
+-->
+
 
 ---
 
