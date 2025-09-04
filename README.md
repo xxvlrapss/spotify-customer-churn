@@ -1,75 +1,105 @@
 # 🎵 Spotify Customer Churn Analysis  
 
-## 📖 Context  
-Customer churn is one of the biggest challenges for subscription-based businesses like Spotify.  
-Churn occurs when users stop using the service or cancel their subscription, which directly impacts revenue and long-term growth.  
+## 📖 Business Context  
+Spotify ingin memahami faktor-faktor yang memengaruhi **customer churn** (berhentinya pelanggan) agar dapat merancang strategi retensi yang lebih efektif.  
 
-The goal of this project is to:  
-- Identify **key factors driving customer churn**  
-- Build a **data-driven churn profile**  
-- Provide **recommendations** for improving customer retention  
+Dataset ini berisi informasi perilaku user seperti:  
+- waktu mendengarkan musik (avg daily minutes),  
+- jumlah playlist,  
+- jumlah skip,  
+- tiket support,  
+- jenis subscription,  
+- genre, dan  
+- aktivitas login.  
+
+**Tujuan analisis ini:**  
+- Mengidentifikasi faktor perilaku yang berhubungan dengan churn  
+- Memberikan insight bisnis yang relevan  
+- Menyusun rekomendasi strategis untuk mengurangi churn  
 
 ---
 
-## 📂 Dataset  
+## 📂 Dataset Overview  
 - **Source:** Synthetic dataset from Kaggle  
-- **Unit of Analysis:** Each row = one Spotify user  
 - **Size:** ~5,000 records  
+- **Unit of Analysis:** Setiap baris = satu user Spotify  
+- **Target Variable:** `Churn` (Yes = churn, No = aktif)  
 
-**Main Columns:**  
-- `user_id` → Unique identifier (not used for modeling)  
-- `gender`, `age`, `country` → User demographics  
-- `subscription_plan` → Free / Premium / Family / Student  
-- `contract_type` → Month-to-month, One year  
-- `tenure` → Months subscribed  
+**Main Columns**  
+- `user_id` → Unique identifier (tidak dipakai dalam modeling)  
+- `gender`, `age`, `country` → Demografi user  
+- `subscription_type` → Free / Premium / Family / Student  
+- `contract_type` → Month-to-month / One year  
+- `tenure` → Lama berlangganan (bulan)  
 - `payment_method` → Credit card, PayPal, Electronic check  
-- `songs_listened`, `hours_streamed`, `playlists_created` → Engagement metrics  
-- `Churn` → Target variable (Yes/No)  
+- `avg_daily_minutes` → Waktu mendengarkan musik per hari  
+- `playlists_created` → Jumlah playlist  
+- `skips` → Rata-rata skip per hari  
+- `support_tickets` → Jumlah tiket komplain  
+- `days_since_last_login` → Hari sejak login terakhir  
+- `Churn` → Target (Yes/No)  
 
 ---
 
-## 🔍 Insights  
+## 🔍 Key Insights  
 
-### 1. Subscription & Contract  
-- **Month-to-month subscribers** churn significantly more often than yearly subscribers.  
-- **Family & Student plans** show slightly better retention compared to Premium (single users).  
+1. **Engagement (Avg Daily Minutes)**  
+   - User churn memiliki waktu dengar musik harian lebih rendah.  
+   - Engagement rendah → risiko churn lebih tinggi.  
 
-### 2. Tenure & Loyalty  
-- Users with **short tenure (<6 months)** are highly prone to churn.  
-- Churn probability decreases steadily after 24+ months.  
+2. **Playlist Behavior**  
+   - User churn cenderung hanya punya 0–1 playlist.  
+   - Semakin banyak playlist dibuat → semakin kecil kemungkinan churn.  
 
-### 3. Payment Methods  
-- **Electronic check** has the highest churn rate (≈40%).  
-- Credit card & PayPal are more stable payment options.  
+3. **Skips per Day**  
+   - User churn memiliki skip rate lebih tinggi.  
+   - Sering skip → indikasi ketidakpuasan rekomendasi musik.  
 
-### 4. Engagement Metrics  
-- Users who listen to **fewer than 50 songs per month** or have low streaming hours are far more likely to churn.  
-- Customers with **more playlists created** show higher retention (engagement effect).  
+4. **Support Tickets**  
+   - Banyak tiket support berhubungan dengan churn tinggi.  
+   - Menunjukkan pengalaman buruk atau masalah aplikasi.  
 
-### 5. Demographics  
-- Younger users (18–25) churn more often → possibly due to trial use, price sensitivity, or switching to competitors.  
+5. **Days Since Last Login**  
+   - Non-churn: login rutin (≤5 hari).  
+   - Churn: lama tidak login (20–50 hari).  
+
+6. **Subscription Type**  
+   - Free users lebih rentan churn dibanding premium.  
+   - Jenis langganan memengaruhi loyalitas.  
 
 ---
 
-## ✅ Recommendations  
+## ✅ Business Recommendations  
 
-### Business Actions  
-- 💳 **Payment Method**: Encourage users paying via electronic check to switch to credit card/PayPal.  
-- 🎧 **Engagement**: Boost low-activity users with personalized playlists, notifications, or reward points.  
-- 📆 **Contracts**: Offer loyalty discounts for month-to-month subscribers to switch to yearly plans.  
-- 👩‍🎤 **Youth Retention**: Target the 18–25 segment with student pricing, exclusive playlists, or influencer partnerships.  
+1. **Tingkatkan Engagement**  
+   - Rekomendasikan lagu sesuai preferensi user.  
+   - Tambahkan fitur *Daily Mix* atau *For You Playlist* untuk user dengan engagement rendah.  
 
-### Analytics & Modeling  
-- Apply **class imbalance handling** (SMOTE / class weights).  
-- Test **tree-based models** (Random Forest, XGBoost) for churn prediction.  
-- Use **feature importance analysis** to identify the strongest churn predictors.  
-- Deploy results in a **dashboard** for continuous monitoring.  
+2. **Dorong Pembuatan Playlist**  
+   - Auto-playlist & rekomendasi lagu baru.  
+   - Kampanye/gamifikasi: “Buat playlist populer, dapatkan reward”.  
+
+3. **Kurangi Skip Rate**  
+   - Perbaiki algoritma rekomendasi.  
+   - Tambahkan *feedback button* pada skip untuk mempelajari preferensi user.  
+
+4. **Perbaiki Customer Support**  
+   - Sistem respon cepat untuk tiket komplain.  
+   - Analisis pola tiket support untuk identifikasi masalah umum.  
+
+5. **Retensi User Tidak Aktif**  
+   - Notifikasi/email promo untuk user tidak login >14 hari.  
+   - Berikan voucher premium trial untuk menarik kembali user lama.  
+
+6. **Fokus pada Free Plan**  
+   - Edukasi benefit premium plan.  
+   - Promo konversi free → premium untuk mengurangi churn.  
 
 ---
 
 ## 📊 Power BI Dashboard & Visualisasi  
 
-Ringkasan visualisasi churn Spotify dalam format PDF:  
+Visualisasi churn Spotify tersedia dalam format PDF:  
 
 <p>
   <a href="https://github.com/xxvlrapss/spotify-customer-churn/blob/main/PowerBI/visualisasi-spotify-churn.pdf" target="_blank">
