@@ -1,107 +1,75 @@
-# 🎵 Spotify Customer Churn Prediction  
+# 🎵 Spotify Customer Churn Analysis  
 
 ## 📖 Context  
-Customer churn (attrition) is a major challenge in subscription-based platforms like Spotify.  
-Churn occurs when users cancel or do not renew their subscriptions, impacting both revenue and long-term user growth.  
+Customer churn is one of the biggest challenges for subscription-based businesses like Spotify.  
+Churn occurs when users stop using the service or cancel their subscription, which directly impacts revenue and long-term growth.  
 
-This project analyzes **Spotify user behavior, subscription details, and demographics** to:  
-- Identify **factors that drive churn**  
-- Build a **predictive model** for early churn detection  
-- Provide **business recommendations** to improve retention  
+The goal of this project is to:  
+- Identify **key factors driving customer churn**  
+- Build a **data-driven churn profile**  
+- Provide **recommendations** for improving customer retention  
 
 ---
 
 ## 📂 Dataset  
-
-- **Source:** Kaggle – Spotify Customer Churn Dataset  
-- **Size:** ~5,000 users  
+- **Source:** Synthetic dataset from Kaggle  
 - **Unit of Analysis:** Each row = one Spotify user  
-- **Target Variable:** `Churn` (Yes = customer left, No = retained)  
+- **Size:** ~5,000 records  
 
-**Key Features**  
-
-🔹 **User Demographics**  
-- `user_id`: Unique identifier (drop for modeling)  
-- `gender`: Male / Female  
-- `age`: Age of user  
-- `country`: Country of residence  
-
-🔹 **Subscription & Billing**  
-- `subscription_plan`: Free / Premium / Family / Student  
-- `tenure`: Number of months subscribed  
-- `payment_method`: Credit card / PayPal / Electronic check / Others  
-- `contract_type`: Month-to-month / One year  
-
-🔹 **Usage & Engagement**  
-- `songs_listened`: Number of songs played  
-- `hours_streamed`: Total hours of music streamed  
-- `playlists_created`: Number of playlists created  
-- `skips`: Number of skipped tracks  
-
-🔹 **Target Variable**  
-- `Churn`: Whether the user churned (Yes/No)  
+**Main Columns:**  
+- `user_id` → Unique identifier (not used for modeling)  
+- `gender`, `age`, `country` → User demographics  
+- `subscription_plan` → Free / Premium / Family / Student  
+- `contract_type` → Month-to-month, One year  
+- `tenure` → Months subscribed  
+- `payment_method` → Credit card, PayPal, Electronic check  
+- `songs_listened`, `hours_streamed`, `playlists_created` → Engagement metrics  
+- `Churn` → Target variable (Yes/No)  
 
 ---
 
-## 🔍 Insights from EDA  
+## 🔍 Insights  
 
-- **Contract Type**:  
-  Month-to-month users churned **3x more often** than yearly subscribers.  
+### 1. Subscription & Contract  
+- **Month-to-month subscribers** churn significantly more often than yearly subscribers.  
+- **Family & Student plans** show slightly better retention compared to Premium (single users).  
 
-- **Tenure**:  
-  Users with tenure < 6 months showed the highest churn rate, while those with tenure > 24 months rarely churned.  
+### 2. Tenure & Loyalty  
+- Users with **short tenure (<6 months)** are highly prone to churn.  
+- Churn probability decreases steadily after 24+ months.  
 
-- **Payment Method**:  
-  Electronic check had the **highest churn rate (≈40%)**, while credit card & PayPal users were more stable.  
+### 3. Payment Methods  
+- **Electronic check** has the highest churn rate (≈40%).  
+- Credit card & PayPal are more stable payment options.  
 
-- **Engagement**:  
-  Users with **low streaming activity (<50 songs/month)** or few playlists created were far more likely to churn.  
+### 4. Engagement Metrics  
+- Users who listen to **fewer than 50 songs per month** or have low streaming hours are far more likely to churn.  
+- Customers with **more playlists created** show higher retention (engagement effect).  
 
-- **Demographics**:  
-  Younger users (18–25) churned the most, likely due to trial use or switching to competitors.  
-
----
-
-## 🤖 Modeling  
-
-- **Preprocessing Steps**  
-  - Dropped `user_id`  
-  - Encoded categorical variables (Label Encoding, One-Hot Encoding)  
-  - Scaled numerical features (StandardScaler)  
-
-- **Baseline Models**  
-  - Logistic Regression → Accuracy ~0.47, ROC-AUC ~0.46 (weak performance)  
-  - Random Forest → Accuracy ~0.48, ROC-AUC ~0.48 (slightly better, still poor)  
-
-- **Challenges**  
-  - Dataset imbalance (more retained users than churned ones)  
-  - Several categorical features with many levels (e.g., country, payment method)  
-
-- **Next Steps**  
-  - Apply **SMOTE / class weights**  
-  - Tune hyperparameters for Random Forest / try XGBoost  
-  - Evaluate with **Precision, Recall, F1-score, ROC-AUC**  
+### 5. Demographics  
+- Younger users (18–25) churn more often → possibly due to trial use, price sensitivity, or switching to competitors.  
 
 ---
 
 ## ✅ Recommendations  
 
-### For Business  
-- 💳 Encourage churn-prone users (month-to-month, electronic check) to switch to **annual plans** or more stable payment methods.  
-- 🎧 Boost engagement by sending **personalized playlists** to users with low activity.  
-- 🧑‍🎓 Focus marketing on **young users (18–25)** with student discounts or influencer campaigns.  
-- 🎁 Offer loyalty rewards for **long-tenure customers** to reinforce retention.  
+### Business Actions  
+- 💳 **Payment Method**: Encourage users paying via electronic check to switch to credit card/PayPal.  
+- 🎧 **Engagement**: Boost low-activity users with personalized playlists, notifications, or reward points.  
+- 📆 **Contracts**: Offer loyalty discounts for month-to-month subscribers to switch to yearly plans.  
+- 👩‍🎤 **Youth Retention**: Target the 18–25 segment with student pricing, exclusive playlists, or influencer partnerships.  
 
-### For Modeling  
-- Apply **imbalanced data handling** (SMOTE, undersampling).  
-- Use **tree-based ensemble methods** (Random Forest, XGBoost).  
-- Deploy model to a **dashboard** for churn risk monitoring.  
+### Analytics & Modeling  
+- Apply **class imbalance handling** (SMOTE / class weights).  
+- Test **tree-based models** (Random Forest, XGBoost) for churn prediction.  
+- Use **feature importance analysis** to identify the strongest churn predictors.  
+- Deploy results in a **dashboard** for continuous monitoring.  
 
 ---
 
-## 🔗 Power BI Dashboard & Visualisasi
+## 📊 Power BI Dashboard & Visualisasi  
 
-Nikmati ringkasan visual churn Spotify dalam format **PDF**:
+Ringkasan visualisasi churn Spotify dalam format PDF:  
 
 <p>
   <a href="https://github.com/xxvlrapss/spotify-customer-churn/blob/main/PowerBI/visualisasi-spotify-churn.pdf" target="_blank">
@@ -109,23 +77,10 @@ Nikmati ringkasan visual churn Spotify dalam format **PDF**:
   </a>
 </p>
 
-- **visualisasi-spotify-churn.pdf** — Versi statis dari dashboard (mudah dipreview langsung di GitHub tanpa Power BI).
-
-<!--
-Jika nanti kamu menambahkan file PBIX, tinggal buka komentar dan ganti nama filenya:
-
-<p>
-  <a href="https://github.com/xxvlrapss/spotify-customer-churn/raw/main/PowerBI/spotify-churn-dashboard.pbix">
-    <img src="https://img.shields.io/badge/DOWNLOAD-spotify--churn--dashboard.pbix-2e7d32?style=for-the-badge&logo=powerbi&logoColor=white" alt="Download PBIX" />
-  </a>
-</p>
-
-- **spotify-churn-dashboard.pbix** — File Power BI interaktif (buka di Power BI Desktop).
--->
-
+- **visualisasi-spotify-churn.pdf** — Versi statis dari dashboard (bisa langsung dibuka di GitHub).  
 
 ---
 
 ## 📎 References  
-- Dataset: [Kaggle – Spotify Customer Churn](https://www.kaggle.com/)  
-- Notebook: [Spotify Churn Prediction](https://github.com/xxvlrapss/spotify-customer-churn/blob/main/spotify_customer_churn.ipynb)  
+- Kaggle Notebook: [Analisis Spotify Customer Churn](https://www.kaggle.com/code/dimasprayoga/analisis-spotify-customer-churn)  
+- Jupyter Notebook: [analisis-spotify-customer-churn.ipynb](https://github.com/xxvlrapss/Data-Analyst-Portofolio/blob/main/analisis-spotify-customer-churn.ipynb)  
